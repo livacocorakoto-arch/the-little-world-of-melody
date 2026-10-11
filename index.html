@@ -13,16 +13,37 @@
 @media(max-width:360px){.screen{padding-left:8px;padding-right:8px}.choices{gap:6px}.choice{padding:4px;border-width:2px}.animal{height:118px}.choice-label{font-size:.82rem}.lang{font-size:.7rem}.prompt-text{font-size:.96rem}}
 @media(orientation:landscape) and (max-height:520px){.screen{gap:7px;padding-top:6px;padding-bottom:8px}.mascot{height:auto;aspect-ratio:840/1180}.choice{min-height:0}.animal{height:clamp(95px,25vh,145px)}.title{font-size:1.55rem}.footer-note{margin-top:4px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Full illustrated welcome screen: image contains the artwork and visual labels. */
+#welcome.welcome-screen{padding:0;gap:0;position:relative;display:none;}
+#welcome.welcome-screen.active{display:flex;}
+#welcome .welcome-art{position:relative;width:100%;line-height:0;overflow:hidden;background:#79d9ed;}
+#welcome .welcome-art img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;}
+#welcome .welcome-hotspot{position:absolute;display:block;border:0;background:transparent;padding:0;border-radius:24px;line-height:normal;color:transparent;}
+#welcome #startBtn{left:62%;top:49%;width:30%;height:17%;min-height:44px;box-shadow:none;font-size:0;background:transparent;border:0;padding:0;}
+#welcome .language-row{position:absolute;left:54%;top:81%;width:44%;height:13%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2%;margin:0;}
+#welcome .lang{width:100%;height:100%;min-height:44px;border:0;background:transparent;box-shadow:none;border-radius:24px;padding:0;font-size:0;color:transparent;}
+#welcome .lang.selected{outline:3px solid rgba(255,255,255,.0);background:transparent;}
+#welcome .welcome-accessible{position:absolute;left:8px;bottom:8px;opacity:.01;width:1px;height:1px;overflow:hidden;}
+@media(max-width:520px){
+  #welcome .welcome-art img{width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;}
+  #welcome #startBtn{min-height:44px;}
+  #welcome .language-row{left:54%;top:81%;width:44%;height:13%;gap:1%;}
+}
 </style></head>
 <body><main class="app" aria-live="polite">
 <header class="topbar"><div class="brand">The Little World <span>of Melody</span></div><div class="tools"><button class="iconbtn" id="audioToggle" aria-label="Toggle sound" title="Sound">🔊</button><button class="iconbtn" id="homeBtn" aria-label="Home" title="Home">⌂</button></div></header>
-<section class="screen active welcome-screen" id="welcome">
-<p class="eyebrow" id="welcomeEyebrow">A little moment to discover</p><h1 class="title" id="welcomeTitle">Let's find the duck!</h1>
-<div class="mascot"><img src="melody-beach.png" alt="Melody, with curly dark hair and a purple dress, on her beach adventure"></div>
-<p class="subtitle" id="welcomeText">Can you help Melody find a little duck?</p>
-<button class="primary" id="startBtn">▶ Let's play!</button>
-<div class="language-row" aria-label="Choose language"><button class="lang selected" data-lang="en">🇬🇧<br>English</button><button class="lang" data-lang="fr">🇫🇷<br>Français</button><button class="lang" data-lang="bi">🌍<br>English + Français</button></div>
-<p class="footer-note" id="parentNote">A short, gentle activity · Play together when possible</p>
+<section class="screen active welcome-screen" id="welcome" aria-label="The Little World of Melody welcome screen">
+<div class="welcome-art">
+<img src="melody-home.png" alt="Melody in her purple dress playing ukulele on a tropical beach with a ring-tailed lemur and a turtle. Choose a language or start the game.">
+<button class="welcome-hotspot" id="startBtn" aria-label="Let's play">Let's play</button>
+<div class="language-row" aria-label="Choose language">
+<button class="lang selected" data-lang="en" aria-label="English">English</button>
+<button class="lang" data-lang="fr" aria-label="Français">Français</button>
+<button class="lang" data-lang="bi" aria-label="English and French">English and French</button>
+</div>
+</div>
+<div class="welcome-accessible"><span id="welcomeEyebrow">A little moment to discover</span><span id="welcomeTitle">Let's find the duck!</span><span id="welcomeText">Can you help Melody find a little duck?</span><span id="parentNote">A short, gentle activity</span></div>
 </section>
 <section class="screen" id="learn">
 <p class="eyebrow" id="learnEyebrow">Meet a new friend</p><h1 class="title" id="learnTitle">This is a duck!</h1>
